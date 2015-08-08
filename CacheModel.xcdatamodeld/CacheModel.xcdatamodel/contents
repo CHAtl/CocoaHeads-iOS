@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8166.2" systemVersion="14E46" minimumToolsVersion="Automatic">
+    <entity name="Meeting" representedClassName=".Meeting" syncable="YES">
+        <attribute name="ckRecordID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="information" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Member" representedClassName=".Member" syncable="YES">
+        <attribute name="dateJoined" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="meetingsAttended" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meeting" syncable="YES"/>
+        <relationship name="meetingsSpoken" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meeting" syncable="YES"/>
+    </entity>
+    <entity name="Settings" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="ckSubscriptionID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Meeting" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Member" positionX="144" positionY="-18" width="128" height="133"/>
+        <element name="Settings" positionX="45" positionY="36" width="128" height="75"/>
+    </elements>
+</model>

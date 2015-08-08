@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let upcomingMeetingActivityType = "com.liambutlerlawrence.upcomingCHMeeting"
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        CloudKitModel.updateFromCloudKitNotification(userInfo: userInfo)
+        completionHandler(UIBackgroundFetchResult.NewData)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        application.registerForRemoteNotifications()
+        CloudKitModel.verifyCloudKitSubscription()
         return true
+    }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        if userActivity.activityType == upcomingMeetingActivityType
+        {
+            NSLog("Should open \"Upcoming\" tab")
+            return true
+        }
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {
